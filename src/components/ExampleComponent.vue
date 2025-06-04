@@ -18,7 +18,7 @@
     <br>
     <q-btn color="white" text-color="black" label="Aumentar" @click="cartService.aumentar()" />
     <q-btn color="white" text-color="black" label="Disminuir" @click="cartService.disminuir()" />
-    <p>Counter: {{ cartService.valor }}</p>
+    <p>Counter test: {{ cartService.valor }}</p>
   </div>
 </template>
 
