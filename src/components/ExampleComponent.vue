@@ -14,6 +14,11 @@
     <q-btn :loading="loadingUserUid" color="white" text-color="black" label="Login"
       @click="loginWithEmailCall(emailField, passwordField)" />
     <p v-if="userUid != ''">Login response: {{ userUid }}</p>
+    <br>
+    <br>
+    <q-btn color="white" text-color="black" label="Aumentar" @click="cartService.aumentar()" />
+    <q-btn color="white" text-color="black" label="Disminuir" @click="cartService.disminuir()" />
+    <p>Counter: {{ cartService.valor }}</p>
   </div>
 </template>
 
@@ -28,15 +33,12 @@ import {
 } from 'vue';
 import type { Todo, Meta } from './models';
 import { loginWithEmail } from 'firebase-ts'
+import { CartSerice } from 'cart-flow-poc'
 
-function useClickCount() {
-  const clickCount = ref(0);
-  function increment() {
-    clickCount.value += 1
-    return clickCount.value;
-  }
+function cartService() {
+  const cartService = ref(new CartSerice())
 
-  return { clickCount, increment };
+  return { cartService };
 }
 
 function loginForm() {
@@ -86,7 +88,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    return { ...useClickCount(), ...login(), ...loginForm(), ...useDisplayTodo(toRef(props, 'todos')) };
+    return { ...login(), ...loginForm(), ...cartService(), ...useDisplayTodo(toRef(props, 'todos')) };
   }
 });
 </script>
