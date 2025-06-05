@@ -2,6 +2,8 @@ name: Deploy to Firebase Hosting
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-remote-workflow]
   push:
     branches:
       - main
